@@ -1,9 +1,14 @@
+import React, {useState} from 'react';
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Draggable, { DraggableEvent, DraggableData } from 'react-draggable';
 
 const Home: NextPage = () => {
+  const [position, setPosition] = useState({x: 0, y: 0});
+
+  const onDrag = (e: DraggableEvent, data: DraggableData) => setPosition({x: data.lastX, y: data.lastY});
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -12,59 +17,23 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      <main>
+        <Draggable
+          position={position}
+          onDrag={onDrag}
         >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+          <div style={{ width: "100%", height: "100%", background: "#cccccc" }}>
+            <p>
+              　私わたくしはその人を常に先生と呼んでいた。だからここでもただ先生と書くだけで本名は打ち明けない。これは世間を憚はばかる遠慮というよりも、その方が私にとって自然だからである。私はその人の記憶を呼び起すごとに、すぐ「先生」といいたくなる。筆を執とっても心持は同じ事である。よそよそしい頭文字かしらもじなどはとても使う気にならない。
+              　私が先生と知り合いになったのは鎌倉かまくらである。その時私はまだ若々しい書生であった。暑中休暇を利用して海水浴に行った友達からぜひ来いという端書はがきを受け取ったので、私は多少の金を工面くめんして、出掛ける事にした。私は金の工面に二に、三日さんちを費やした。ところが私が鎌倉に着いて三日と経たたないうちに、私を呼び寄せた友達は、急に国元から帰れという電報を受け取った。電報には母が病気だからと断ってあったけれども友達はそれを信じなかった。友達はかねてから国元にいる親たちに勧すすまない結婚を強しいられていた。彼は現代の習慣からいうと結婚するにはあまり年が若過ぎた。それに肝心かんじんの当人が気に入らなかった。それで夏休みに当然帰るべきところを、わざと避けて東京の近くで遊んでいたのである。彼は電報を私に見せてどうしようと相談をした。私にはどうしていいか分らなかった。けれども実際彼の母が病気であるとすれば彼は固もとより帰るべきはずであった。それで彼はとうとう帰る事になった。せっかく来た私は一人取り残された。
+              　学校の授業が始まるにはまだ大分だいぶ日数ひかずがあるので鎌倉におってもよし、帰ってもよいという境遇にいた私は、当分元の宿に留とまる覚悟をした。友達は中国のある資産家の息子むすこで金に不自由のない男であったけれども、学校が学校なのと年が年なので、生活の程度は私とそう変りもしなかった。したがって一人ひとりぼっちになった私は別に恰好かっこうな宿を探す面倒ももたなかったのである。
+              　宿は鎌倉でも辺鄙へんぴな方角にあった。玉突たまつきだのアイスクリームだのというハイカラなものには長い畷なわてを一つ越さなければ手が届かなかった。車で行っても二十銭は取られた。けれども個人の別荘はそこここにいくつでも建てられていた。それに海へはごく近いので海水浴をやるには至極便利な地位を占めていた。
+              　私は毎日海へはいりに出掛けた。古い燻くすぶり返った藁葺わらぶきの間あいだを通り抜けて磯いそへ下りると、この辺へんにこれほどの都会人種が住んでいるかと思うほど、避暑に来た男や女で砂の上が動いていた。ある時は海の中が銭湯せんとうのように黒い頭でごちゃごちゃしている事もあった。その中に知った人を一人ももたない私も、こういう賑にぎやかな景色の中に裹つつまれて、砂の上に寝ねそべってみたり、膝頭ひざがしらを波に打たしてそこいらを跳はね廻まわるのは愉快であった。
+              　私は実に先生をこの雑沓ざっとうの間あいだに見付け出したのである。その時海岸には掛茶屋かけぢゃやが二軒あった。私はふとした機会はずみからその一軒の方に行き慣なれていた。長谷辺はせへんに大きな別荘を構えている人と違って、各自めいめいに専有の着換場きがえばを拵こしらえていないここいらの避暑客には、ぜひともこうした共同着換所といった風ふうなものが必要なのであった。彼らはここで茶を飲み、ここで休息する外ほかに、ここで海水着を洗濯させたり、ここで鹹しおはゆい身体からだを清めたり、ここへ帽子や傘かさを預けたりするのである。海水着を持たない私にも持物を盗まれる恐れはあったので、私は海へはいるたびにその茶屋へ一切いっさいを脱ぬぎ棄すてる事にしていた。
+            </p>
+          </div>
+        </Draggable>
+      </main>
     </div>
   )
 }
